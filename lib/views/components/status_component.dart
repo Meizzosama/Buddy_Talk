@@ -1,5 +1,7 @@
 import 'package:chat_withmoxi/consts/consts.dart';
 
+import '../../consts/controllers/home_controller.dart';
+
 Widget statusComponent(){
   return Container(
 padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -16,7 +18,7 @@ padding: const EdgeInsets.symmetric(horizontal: 12),
           subtitle: "Tap to add Status Updates".text.color(Colors.black).make(),
         ),
         20.heightBox,
-        recentupdates.text.color(Colors.teal).size(15).bold.make(),
+        recentupdates.text.color(Colors.black).size(15).bold.make(),
         ListView.builder(
         shrinkWrap: true,
         itemCount: 6,
@@ -28,15 +30,18 @@ padding: const EdgeInsets.symmetric(horizontal: 12),
   Container(
     decoration: BoxDecoration(
       shape: BoxShape.circle,
-      border: Border.all(color: Colors.greenAccent,width: 3)
+      border: Border.all(color: Colors.transparent,width: 3,)
     ),
     child:
-  CircleAvatar(
-    radius: 25,
-  backgroundColor: Vx.randomOpaqueColor,
-  child: Image.asset(ic_user),
-  ),),
-title: "Username".text.bold.black.size(17).make(),
+    CircleAvatar(
+      backgroundColor: bgColor,
+      radius: 30,
+      backgroundImage: NetworkImage(HomeController.instance.userImage,),
+    ).box.roundedFull.clip(Clip.antiAlias).make(),
+
+
+ ),
+title: "Moxi".text.bold.black.size(17).make(),
         subtitle: "Today 12:34 Am".text.black.make(),
       ),);
   }),
