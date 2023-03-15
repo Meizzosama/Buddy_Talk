@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "841226926109",
+    "project_id": "buddy-talk-f7bb0",
+    "storage_bucket": "buddy-talk-f7bb0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841226926109:android:c385feb2b0b1b2f8882ef4",
+        "android_client_info": {
+          "package_name": "com.example.chat_withmoxi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "841226926109-fmrr1jahbh8q0k59padfqothd39o71uq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhxKIk0W0WCoxDBN6F7TD36TWr6eXIChg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "841226926109-fmrr1jahbh8q0k59padfqothd39o71uq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
