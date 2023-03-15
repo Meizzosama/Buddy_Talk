@@ -3,6 +3,8 @@ import 'package:chat_withmoxi/views/components/status_component.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../consts/colors.dart';
+
 Widget tabbarView(){
   return Expanded(child:
     Container(
@@ -13,7 +15,7 @@ Widget tabbarView(){
     children: [
       Container(
         decoration: const BoxDecoration(
-          color: Colors.white38,
+          color: Colors.white60,
           borderRadius: BorderRadius.only(bottomLeft: Radius.circular(12)),
           ),
         child: chatsComponents(),

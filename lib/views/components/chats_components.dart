@@ -34,6 +34,7 @@ Widget chatsComponents(){
          children: snapshot.data!.docs.mapIndexed((currentValue, index) {
            //covert each msg to variable for easy access
            var doc = snapshot.data!.docs[index];
+
 return messageBubble(doc);
          }).toList(),
        );

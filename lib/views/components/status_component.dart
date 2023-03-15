@@ -12,7 +12,7 @@ padding: const EdgeInsets.symmetric(horizontal: 12),
           leading: CircleAvatar(
             radius: 25,
             backgroundColor: Colors.black,
-            child: Image.asset(ic_user,color: Colors.white,),
+            backgroundImage: NetworkImage(HomeController.instance.userImage,)
           ),
           title: "My Status".text.fontFamily(bold).color(Colors.black).make(),
           subtitle: "Tap to add Status Updates".text.color(Colors.black).make(),
