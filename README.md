@@ -4,7 +4,6 @@ This is new Flutter Project with a backend source of Firebase..
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
 
 This app is a pure One to Many Chat App.
 
