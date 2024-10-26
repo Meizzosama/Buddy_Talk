@@ -1,6 +1,8 @@
-import 'package:chat_withmoxi/consts/firebase_consts.dart';
+
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../firebase_consts.dart';
 
   class HomeController extends GetxController{
   late SharedPreferences prefs;

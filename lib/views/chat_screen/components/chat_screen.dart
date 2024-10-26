@@ -1,9 +1,9 @@
-import 'package:chat_withmoxi/consts/consts.dart';
-import 'package:chat_withmoxi/consts/controllers/chats_controller.dart';
-import 'package:chat_withmoxi/consts/controllers/home_controller.dart';
-import 'package:chat_withmoxi/services/store_services.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import '../../../consts/consts.dart';
+import '../../../consts/controllers/chats_controller.dart';
+import '../../../services/store_services.dart';
 import 'chat_bubble.dart';
 
 class ChatScreen extends StatelessWidget {
@@ -11,8 +11,6 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     //init out chats controller
     var controller = Get.put(ChatsController());
 
@@ -38,16 +36,11 @@ class ChatScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 12,
-              ),
-            ),
             Row(
               children: [
                 Expanded(
                   child: RichText(
-                    text:   TextSpan(children: [
+                    text: TextSpan(children: [
                       TextSpan(
                         //using the username from chat-screen
                         text: "${controller.friendname}\n",
@@ -62,44 +55,57 @@ class ChatScreen extends StatelessWidget {
                             fontSize: 13,
                             fontWeight: FontWeight.bold,
                             color: Colors.black),
-                      ),]),),),
-                 CircleAvatar(
+                      ),
+                    ]),
+                  ),
+                ),
+                CircleAvatar(
                   backgroundColor: Colors.cyan,
-                  child: IconButton(onPressed:(){}, icon: Icon(Icons.video_camera_back_rounded),),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.video_camera_back_rounded),
+                  ),
                 ),
                 10.widthBox,
-                 CircleAvatar(
+                CircleAvatar(
                   backgroundColor: Colors.cyan,
-                   child: IconButton(onPressed:(){}, icon: Icon(Icons.phone),),
-                 ),],),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.phone),
+                  ),
+                ),
+              ],
+            ),
             30.heightBox,
             //this is the chat body
-            Obx(() =>
-            Expanded(
-              //here im going to use stream builder for realtime chat
-              child: controller.isloading.value ? const Center(
-                child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation(bgColor),
-              ),):
-              StreamBuilder(
-                stream: StoreServices.getChats(controller.chatId),
-                builder: (BuildContext context,
-                    AsyncSnapshot<QuerySnapshot> snapshot) {
-                  if(!snapshot.hasData){
-                    return Container(
-
-                    );
-                  }else{
-                    return ListView(
-                      children: snapshot.data!.docs.mapIndexed((currentValue, index){
-                        var doc=snapshot.data!.docs[index];
-                        return chatBubble(index,doc);
-                      }).toList(),
-                    );
-                  }
-                },
+            Obx(
+              () => Expanded(
+                //here im going to use stream builder for realtime chat
+                child: controller.isloading.value
+                    ? const Center(
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation(bgColor),
+                        ),
+                      )
+                    : StreamBuilder(
+                        stream: StoreServices.getChats(controller.chatId),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<QuerySnapshot> snapshot) {
+                          if (!snapshot.hasData) {
+                            return Container();
+                          } else {
+                            return ListView(
+                              children: snapshot.data!.docs
+                                  .mapIndexed((currentValue, index) {
+                                var doc = snapshot.data!.docs[index];
+                                return chatBubble(index, doc);
+                              }).toList(),
+                            );
+                          }
+                        },
+                      ),
               ),
-            ),),
+            ),
             10.heightBox,
             SizedBox(
               height: 55,
@@ -138,17 +144,31 @@ class ChatScreen extends StatelessWidget {
                             fontFamily: bold,
                             fontSize: 14,
                             color: Colors.black,
-                          ),),),),),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                   20.widthBox,
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       //on tap of this will send a msg
                       controller.sendmessage(controller.messageController.text);
                     },
-                  child:
-                  const CircleAvatar(
-                    backgroundColor: Colors.green,
-                    child: Icon(
-                      Icons.send,
-                      color: Colors.black,
-                    ),),),],),),],),),);}}
+                    child: const CircleAvatar(
+                      backgroundColor: Colors.green,
+                      child: Icon(
+                        Icons.send,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

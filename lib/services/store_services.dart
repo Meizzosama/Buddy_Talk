@@ -1,4 +1,6 @@
-import 'package:chat_withmoxi/consts/consts.dart';
+
+
+import '../consts/firebase_consts.dart';
 
 class StoreServices {
   //get user data

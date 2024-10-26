@@ -1,13 +1,13 @@
-import 'package:chat_withmoxi/consts/controllers/auth_controller.dart';
-import 'package:chat_withmoxi/views/home_screen/home_screen.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:chat_withmoxi/consts/strings.dart';
+
 import '../../consts/colors.dart';
+import '../../consts/controllers/auth_controller.dart';
+import '../../consts/strings.dart';
 import '../../consts/utils.dart';
 
 class VerificationScreen extends StatelessWidget {
@@ -57,7 +57,7 @@ class VerificationScreen extends StatelessWidget {
                         ),
                         alignLabelWithHint: true,
                         labelText: "Username",
-                        hintText: "eg. meizzosama",
+                        hintText: "username",
                         labelStyle: const TextStyle(
                             color: Vx.gray600, fontWeight: FontWeight.bold),
                       ),
@@ -85,7 +85,7 @@ class VerificationScreen extends StatelessWidget {
                         alignLabelWithHint: true,
                         labelText: "Phone Number",
                         prefixText: "+92 ",
-                        hintText: "eg. 0123456789",
+                        hintText: "0123456789",
                         labelStyle: const TextStyle(
                             color: Vx.gray600, fontWeight: FontWeight.bold),
                       ),
@@ -147,7 +147,7 @@ class VerificationScreen extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: bgColor,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30), // <-- Radius
+                    borderRadius: BorderRadius.circular(30),
                   ),
                   padding: const EdgeInsets.all(15),
                 ),

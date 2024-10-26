@@ -1,7 +1,10 @@
-import 'package:chat_withmoxi/consts/consts.dart';
-import 'package:chat_withmoxi/consts/controllers/home_controller.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+
+import '../consts.dart';
+import '../firebase_consts.dart';
+import 'home_controller.dart';
 
 class ChatsController extends GetxController{
   //variables of chat

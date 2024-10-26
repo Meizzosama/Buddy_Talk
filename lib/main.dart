@@ -1,27 +1,25 @@
-
-
-import 'package:chat_withmoxi/consts/colors.dart';
-import 'package:chat_withmoxi/consts/images.dart';
-import 'package:chat_withmoxi/consts/strings.dart';
-import 'package:chat_withmoxi/consts/utils.dart';
-import 'package:chat_withmoxi/views/chat_screen/components/chat.dart';
-import 'package:chat_withmoxi/views/home_screen/home_screen.dart';
-import 'package:chat_withmoxi/views/intro_screen/verification_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'consts/colors.dart';
 import 'consts/firebase_consts.dart';
+import 'consts/images.dart';
+import 'consts/strings.dart';
+import 'consts/utils.dart';
+import 'views/home_screen/home_screen.dart';
+import 'views/intro_screen/verification_screen.dart';
 
-main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
-        statusBarColor: Colors.white38,
-        statusBarIconBrightness: Brightness.dark),
+      statusBarColor: Colors.white38,
+      statusBarIconBrightness: Brightness.dark,
+    ),
   );
   runApp(const App());
 }
@@ -36,18 +34,13 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   var isUser = false;
 
-  checkUser() async {
+  void checkUser() async {
     auth.authStateChanges().listen((User? user) {
-      if (user == null && mounted) {
-        setState(() {
-          isUser = false;
-        });
-      } else {
-        setState(() {
-          isUser = true;
-        });
-      }
-      print("User Value is @isUser");
+      if (!mounted) return;
+      setState(() {
+        isUser = user != null;
+      });
+      print("User Value is $isUser");
     });
   }
 
@@ -56,6 +49,7 @@ class _AppState extends State<App> {
     super.initState();
     checkUser();
   }
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -70,6 +64,7 @@ class _AppState extends State<App> {
 
 class ChatApp extends StatelessWidget {
   const ChatApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,45 +75,52 @@ class ChatApp extends StatelessWidget {
           children: [
             Expanded(
               flex: 2,
-              child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      logo,
-                      color: Colors.black54,
-                      width: 150,
-                      height: 130,
-                    ),
-                    appname.text.size(25).fontFamily(bold).make(),
-                  ],
-                ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    logo,
+                    color: Colors.black54,
+                    width: 150,
+                    height: 130,
+                  ),
+                  appname.text.size(25).fontFamily(bold).make(),
+                ],
               ),
             ),
             Expanded(
               flex: 3,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Wrap(
-                    spacing: 8,
-                    children: List.generate(listOfFeatures.length, (index) {
-                      return Chip(
-                          backgroundColor: Colors.transparent,
-                          labelPadding: const EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 4),
-                          side: const BorderSide(
-                            color: Colors.black87,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Wrap(
+                      spacing: 8, // Adjust spacing for better layout
+                      runSpacing: 8, // Vertical spacing between elements
+                      children: List.generate(listOfFeatures.length, (index) {
+                        return Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 10),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black87),
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                          label: listOfFeatures[index].text.semiBold.make());
-                    }),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  slogan.text.size(35).fontFamily(bold).letterSpacing(2).make(),
-                ],
+                          child: Text(
+                            listOfFeatures[index],
+                            style: TextStyle(fontWeight: FontWeight.w600),
+                          ),
+                        );
+                      }),
+                    ),
+                    const SizedBox(height: 45), // Space below feature list
+                    slogan.text
+                        .size(30)
+                        .fontFamily(bold)
+                        .letterSpacing(1.5)
+                        .make(),
+                  ],
+                ),
               ),
             ),
             Expanded(
@@ -126,26 +128,26 @@ class ChatApp extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(
-                    width: context.screenWidth - 80,
+                    width: context.screenWidth - 100,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: bgColor,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30), // <-- Radius
+                          borderRadius: BorderRadius.circular(30),
                         ),
                         padding: const EdgeInsets.all(15),
                       ),
                       onPressed: () {
-                        Get.to(() => const VerificationScreen(),
-                            transition: Transition.downToUp);
+                        Get.to(
+                          () => const VerificationScreen(),
+                          transition: Transition.downToUp,
+                        );
                       },
                       child: cont.text.size(16).make(),
                     ),
                   ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  poweredby.text.size(15).fontFamily(bold).make(),
+                  const SizedBox(height: 5),
+                  poweredby.text.size(15).center.fontFamily(bold).make(),
                 ],
               ),
             ),
@@ -155,3 +157,5 @@ class ChatApp extends StatelessWidget {
     );
   }
 }
+
+//otp pass =123456

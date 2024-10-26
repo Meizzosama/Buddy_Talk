@@ -13,34 +13,34 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.8
   #for using getx state_management..
-  get: ^4.6.5
-  velocity_x: ^3.6.0
+  get: ^4.6.6
+  velocity_x: ^4.2.1
   #for location we use..
   # geolocator: ^9.0.1
   #for authorization..
-  firebase_auth: ^4.2.9
+  firebase_auth: ^5.3.1
   #for firebase..
-  firebase_core: ^2.7.0
-  cloud_firestore: ^4.4.3
+  firebase_core: ^3.6.0
+  cloud_firestore: ^5.4.4
   #for storing media to firebase..
-  firebase_storage: ^11.0.14
+  firebase_storage: ^12.3.4
   #for handling permissions..
-  permission_handler: ^10.2.0
+  permission_handler: ^11.3.1
   #for image picking.
-  image_picker: ^0.8.6+4
+  image_picker: ^1.1.2
   #image_picker: ^0.8.5+3
-  path_provider: ^2.0.13
+  path_provider: ^2.1.4
   #for saving user data in local storage
-  shared_preferences: ^2.0.18
-  intl: ^0.17.0
+  shared_preferences: ^2.3.2
+  intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^2.0.0
+  flutter_lints: ^5.0.0
 
 
 flutter:

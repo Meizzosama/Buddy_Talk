@@ -1,14 +1,13 @@
-import 'package:chat_withmoxi/consts/consts.dart';
-import 'package:chat_withmoxi/consts/images.dart';
-import 'package:chat_withmoxi/consts/strings.dart';
-import 'package:chat_withmoxi/main.dart';
-import 'package:chat_withmoxi/views/chat_screen/components/chat.dart';
-import 'package:chat_withmoxi/views/profile_screen/componensts/profile.dart';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../consts/consts.dart';
 import '../../consts/controllers/home_controller.dart';
+import '../../main.dart';
+import '../profile_screen/componensts/profile_screen.dart';
 
 Widget drawer() {
   return Drawer(
@@ -42,7 +41,10 @@ Widget drawer() {
               radius: 45,
             ),
             15.heightBox,
-            HomeController.instance.username.text.black.fontFamily(bold).size(16).make(),
+            HomeController.instance.username.text.black
+                .fontFamily(bold)
+                .size(16)
+                .make(),
             const Divider(
               color: Colors.blueGrey,
               height: 1,
@@ -59,8 +61,14 @@ Widget drawer() {
                         fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                   leading: CircleAvatar(
-                    backgroundImage: AssetImage(drawerIconsList[index]),
                     backgroundColor: Colors.transparent,
+                    child: IconTheme(
+                      data: IconThemeData(
+                          size: 35,
+                          color:
+                              Colors.black), // Customize size/color if needed
+                      child: drawerIconsList[index],
+                    ),
                   ),
                   onTap: () {
                     switch (index) {
@@ -79,10 +87,11 @@ Widget drawer() {
             ),
             25.heightBox,
             ListTile(
-                leading: (Image.asset(
-                  invites,
-                  height: 45,
-                )),
+                leading: Icon(
+                  CupertinoIcons.person_add_solid,
+                  color: Colors.black,
+                  size: 35,
+                ),
                 onTap: () {},
                 title: const Text(
                   "Invite a Friend",
@@ -96,6 +105,7 @@ Widget drawer() {
               leading: Icon(
                 Icons.logout,
                 color: Colors.black,
+                size: 35,
               ),
               onTap: () async {
                 await auth.signOut();

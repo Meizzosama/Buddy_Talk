@@ -1,7 +1,9 @@
-import 'package:chat_withmoxi/consts/strings.dart';
+
 
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import '../../consts/strings.dart';
 
 Widget tabbar(){
   return Container(

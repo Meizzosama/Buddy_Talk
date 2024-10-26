@@ -50,7 +50,7 @@ android {
         applicationId "com.example.chat_withmoxi"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 33
         versionCode 1
         targetSdkVersion flutter.targetSdkVersion

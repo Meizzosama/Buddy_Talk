@@ -1,6 +1,8 @@
-import 'package:chat_withmoxi/consts/consts.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart' as intl;
+
+import '../../../consts/consts.dart';
 Widget chatBubble(index,DocumentSnapshot doc){
   var t=doc['created_on']==null? DateTime.now():doc['created_on'].toDate();
   var time = intl.DateFormat("h:mm a").format(t);
